@@ -16,11 +16,13 @@ export default new Router({
     {
       path: "/type/:typeId",
       name: "type",
+      props: true,
       component: () => import(/* webpackChunkName: "type" */ "./views/Type.vue")
     },
     {
-      path: "/morpheme/:morphemeId",
+      path: "/morpheme/:morpheme",
       name: "morpheme",
+      props: true,
       component: () =>
         import(/* webpackChunkName: "morpheme" */ "./views/Morpheme.vue")
     }

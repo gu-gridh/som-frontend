@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <h1><router-link to="/">Somali speech corpus</router-link></h1>
-    <router-view />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
   </div>
 </template>
 
@@ -10,7 +12,7 @@ body {
   background: #f8f5f5;
 }
 #app {
-  width: 800px;
+  max-width: 800px;
   margin: auto;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

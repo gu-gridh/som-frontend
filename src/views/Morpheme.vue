@@ -13,38 +13,21 @@
         <th>Translation</th>
         <th>Recordings</th>
       </tr>
-      <tr>
+      <tr v-for="type in types" :key="type.gloss_item">
         <td>
-          <router-link :to="{ name: 'type', params: { typeId: 1 } }">
-            iley
+          <router-link :to="{ name: 'type', params: { typeId: type.lpnr } }">
+            {{ type.gloss_item }}
           </router-link>
         </td>
         <td>
-          <router-link :to="{ name: 'type', params: { typeId: 1 } }">
-            one-eyed person
+          <router-link :to="{ name: 'type', params: { typeId: type.lpnr } }">
+            {{ type.en_trans }}
           </router-link>
         </td>
         <td>
-          <div>⏯ <em>íley</em></div>
-          <div>⏯ <em>íley</em></div>
-          <div>⏯ <em>íley</em></div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <router-link :to="{ name: 'type', params: { typeId: 1 } }">
-            uusley
-          </router-link>
-        </td>
-        <td>
-          <router-link :to="{ name: 'type', params: { typeId: 1 } }">
-            belly
-          </router-link>
-        </td>
-        <td>
-          <div>⏯ <em>uusléy</em></div>
-          <div>⏯ <em>uusléy</em></div>
-          <div>⏯ <em>uusléy</em></div>
+          <div v-for="token in type.tokens" :key="token.lpnr">
+            ⏯ <em>{{ token.som_tone }}</em>
+          </div>
         </td>
       </tr>
     </table>
@@ -52,7 +35,25 @@
 </template>
 
 <script>
-export default {};
+import { getMorpheme } from "@/assets/db";
+
+export default {
+  props: ["morpheme"],
+  data() {
+    return {
+      types: null,
+    };
+  },
+  watch: {
+    morpheme: {
+      immediate: true,
+      async handler() {
+        const morpheme = await getMorpheme(this.morpheme);
+        this.types = morpheme.types;
+      },
+    },
+  },
+};
 </script>
 
 <style>

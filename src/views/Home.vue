@@ -5,15 +5,15 @@
     <div v-if="results">
       <h3>Results</h3>
       <table>
-        <tr v-for="{ typeId, phrase, translation } in results" :key="typeId">
+        <tr v-for="{ lpnr, gloss_item, en_trans } in results" :key="lpnr">
           <td>
-            <router-link :to="{ name: 'type', params: { typeId } }">
-              {{ phrase }}
+            <router-link :to="{ name: 'type', params: { typeId: lpnr } }">
+              {{ gloss_item }}
             </router-link>
           </td>
           <td>
-            <router-link :to="{ name: 'type', params: { typeId } }">
-              {{ translation }}
+            <router-link :to="{ name: 'type', params: { typeId: lpnr } }">
+              {{ en_trans }}
             </router-link>
           </td>
           <td>⏯</td>
@@ -24,47 +24,21 @@
 </template>
 
 <script>
+import { search } from "@/assets/db";
+
 export default {
   name: "home",
   data() {
     return {
       input: "",
-      types: [
-        {
-          typeId: 1,
-          phrase: "Aad ayuu u fiican yahay.",
-          translation: "It is very good.",
-        },
-        {
-          typeId: 2,
-          phrase: "Buugga ay Maryan i siisay aad",
-          translation: "The book that Maryan gave to me is very good",
-        },
-        {
-          typeId: 3,
-          phrase: "Waxa anaa qaatay.",
-          translation: "I took the things.",
-        },
-        {
-          typeId: 4,
-          phrase: "Kuwani ma kooraa?",
-          translation: "Are these cattle bells?",
-        },
-      ],
       results: null,
     };
   },
   methods: {
-    search() {
-      this.results = this.types.filter(
-        ({ phrase, translation }) =>
-          phrase.toLowerCase().includes(this.input.toLowerCase()) ||
-          translation.toLowerCase().includes(this.input.toLowerCase())
-      );
+    async search() {
+      const results = await search(this.input);
+      this.results = results.types;
     },
-  },
-  created() {
-    this.search();
   },
 };
 </script>
