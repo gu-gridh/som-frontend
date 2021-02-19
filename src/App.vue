@@ -8,6 +8,10 @@
 </template>
 
 <style lang="scss">
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: #f8f5f5;
 }
@@ -33,12 +37,20 @@ h6 {
   margin-bottom: 0.2em;
 }
 
+a,
+a:hover {
+  color: #409fbf;
+  text-decoration: none;
+}
+
 .help {
   margin-top: 0;
 }
 
 table {
   width: 100%;
+  margin: 1rem -0.5rem;
+  border-spacing: 0.5rem 1rem;
 }
 th {
   text-align: left;
@@ -58,5 +70,12 @@ th,
 
 .line-label + * {
   margin-top: 0;
+}
+
+.columns {
+  display: flex;
+  & > * {
+    flex: 1;
+  }
 }
 </style>

@@ -1,12 +1,8 @@
 <template>
-  <article>
+  <article v-if="morphemes && tokens">
     <div class="line-label">Phrase</div>
     <h1>{{ gloss_item }}</h1>
-    <div class="line-label">Translation</div>
-    <h2>{{ en_trans }}</h2>
-    <h3>Gloss</h3>
-    <p class="help">This phrase consists of the following morphemes.</p>
-    <table>
+    <table v-if="morphemes.length">
       <tr>
         <th>Morpheme</th>
         <th>Gloss</th>
@@ -24,35 +20,35 @@
           </router-link>
         </td>
         <td>
-          <router-link
-            :to="{
-              name: 'morpheme',
-              params: { morpheme: Morpheme },
-            }"
-          >
-            {{ Gloss }}
-          </router-link>
+          {{ Gloss }}
         </td>
         <td>{{ VowQual }}</td>
       </tr>
     </table>
 
-    <h3>Recordings</h3>
-    <div>⏯ <em>Aad ayuu u fiican yahay</em></div>
-    <div>⏯ <em>Aad ayuu u fiican yahay.</em></div>
+    <div class="line-label">In English</div>
+    <h2>{{ en_trans }}</h2>
+
+    <div v-if="tokens.length">
+      <h3>Recordings</h3>
+      <Token v-for="token in tokens" :key="token.lpnr" v-bind="token" />
+    </div>
   </article>
 </template>
 
 <script>
 import { getType } from "@/assets/db";
+import Token from "@/components/Token";
 
 export default {
   props: ["typeId"],
+  components: { Token },
   data() {
     return {
       gloss_item: null,
       en_trans: null,
       morphemes: null,
+      tokens: null,
     };
   },
   watch: {
@@ -63,6 +59,7 @@ export default {
         this.gloss_item = type.gloss_item;
         this.en_trans = type.en_trans;
         this.morphemes = type.morphemes;
+        this.tokens = type.tokens;
       },
     },
   },
