@@ -3,11 +3,13 @@
     <div class="columns">
       <div>
         <div class="line-label">Morpheme</div>
-        <h1>{{ morpheme }}</h1>
+        <h1>
+          <Morpheme :morpheme="morpheme" />
+        </h1>
       </div>
       <div>
         <div class="line-label">Gloss</div>
-        <h2>DER\N</h2>
+        <h2>{{ gloss }}</h2>
       </div>
     </div>
     <div><strong>Vowel quality:</strong> H</div>
@@ -32,10 +34,11 @@
         </td>
         <td>
           <Token
-            v-for="token in type.tokens"
+            v-for="token in type.tokens.slice(0, 3)"
             :key="token.lpnr"
             v-bind="token"
           />
+          <div v-if="type.tokens.length > 3">...</div>
         </td>
       </tr>
     </table>
@@ -44,11 +47,12 @@
 
 <script>
 import { getMorpheme } from "@/assets/db";
+import Morpheme from "@/components/Morpheme";
 import Token from "@/components/Token";
 
 export default {
   props: ["morpheme"],
-  components: { Token },
+  components: { Morpheme, Token },
   data() {
     return {
       gloss: null,
@@ -61,8 +65,8 @@ export default {
       immediate: true,
       async handler() {
         const response = await getMorpheme(this.morpheme);
-        this.gloss = response.morpheme.gloss;
-        this.vowQual = response.morpheme.vowQual;
+        this.gloss = response.morpheme.Gloss;
+        this.vowQual = response.morpheme.VowQual;
         this.types = response.types;
       },
     },

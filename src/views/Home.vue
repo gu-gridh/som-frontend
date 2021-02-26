@@ -1,22 +1,36 @@
 <template>
   <div>
-    <h2>Search</h2>
-    <input type="search" v-model="input" @keyup="search" />
-    <div v-if="results">
-      <h3>Results</h3>
+    <div class="search-bar">
+      <font-awesome-icon :icon="['fas', 'search']" />
+      <input type="search" v-model="input" spellcheck="false" @input="search" />
+    </div>
+    <div v-if="results.length">
       <table>
-        <tr v-for="{ lpnr, gloss_item, en_trans } in results" :key="lpnr">
+        <tr>
+          <th>Phrase</th>
+          <th>Translation</th>
+        </tr>
+        <tr
+          v-for="{ lpnr, gloss_item, en_trans, morphemes } in results"
+          :key="lpnr"
+        >
           <td>
             <router-link :to="{ name: 'type', params: { typeId: lpnr } }">
               {{ gloss_item }}
             </router-link>
+            <div v-if="morphemes" class="morphemes-row">
+              <Morpheme
+                v-for="(morpheme, i) in morphemes"
+                :key="i"
+                :morpheme="morpheme"
+              />
+            </div>
           </td>
           <td>
             <router-link :to="{ name: 'type', params: { typeId: lpnr } }">
               {{ en_trans }}
             </router-link>
           </td>
-          <td>⏯</td>
         </tr>
       </table>
     </div>
@@ -25,17 +39,23 @@
 
 <script>
 import { search } from "@/assets/db";
+import Morpheme from "@/components/Morpheme";
 
 export default {
   name: "home",
+  components: { Morpheme },
   data() {
     return {
       input: "",
-      results: null,
+      results: [],
     };
   },
   methods: {
     async search() {
+      if (!this.input) {
+        this.results = [];
+        return;
+      }
       const results = await search(this.input);
       this.results = results.types;
     },
@@ -43,9 +63,29 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+.fa-search {
+  margin: 0.5rem 0.5rem 0.5rem 0;
+}
 input {
-  font-size: 150%;
+  flex: 1;
+  font-size: 1.5rem;
   width: 100%;
+}
+table {
+  margin-top: 0;
+}
+th {
+  width: 50%;
+}
+.morphemes-row {
+  font-size: smaller;
+  span:not(:last-of-type) {
+    margin-right: 0.5em;
+  }
 }
 </style>

@@ -8,17 +8,20 @@
 </template>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap&family=Enriqueta&display=optional");
+
 * {
   box-sizing: border-box;
 }
 
-body {
-  background: #f8f5f5;
+html {
+  font-size: 20px;
 }
+
 #app {
   max-width: 800px;
   margin: auto;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Quicksand", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -37,9 +40,18 @@ h6 {
   margin-bottom: 0.2em;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Enriqueta", sans-serif;
+}
+
 a,
 a:hover {
-  color: #409fbf;
+  color: #4189dd;
   text-decoration: none;
 }
 

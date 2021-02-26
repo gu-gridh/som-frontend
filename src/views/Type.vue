@@ -16,7 +16,7 @@
               params: { morpheme: Morpheme },
             }"
           >
-            {{ Morpheme }}
+            <Morpheme :morpheme="Morpheme" />
           </router-link>
         </td>
         <td>
@@ -38,11 +38,12 @@
 
 <script>
 import { getType } from "@/assets/db";
+import Morpheme from "@/components/Morpheme";
 import Token from "@/components/Token";
 
 export default {
   props: ["typeId"],
-  components: { Token },
+  components: { Morpheme, Token },
   data() {
     return {
       gloss_item: null,
