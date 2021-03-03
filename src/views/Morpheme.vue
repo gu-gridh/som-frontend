@@ -33,12 +33,7 @@
           </router-link>
         </td>
         <td>
-          <Token
-            v-for="token in type.tokens.slice(0, 3)"
-            :key="token.lpnr"
-            v-bind="token"
-          />
-          <div v-if="type.tokens.length > 3">...</div>
+          <TokenList :tokens="type.tokens" :limit="2" />
         </td>
       </tr>
     </table>
@@ -48,11 +43,11 @@
 <script>
 import { getMorpheme } from "@/assets/db";
 import Morpheme from "@/components/Morpheme";
-import Token from "@/components/Token";
+import TokenList from "@/components/TokenList";
 
 export default {
   props: ["morpheme"],
-  components: { Morpheme, Token },
+  components: { Morpheme, TokenList },
   data() {
     return {
       gloss: null,
