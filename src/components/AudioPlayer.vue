@@ -17,12 +17,14 @@ export default {
     return {
       sound: null,
       started: false,
-      playing: false,
     };
   },
   computed: {
     url() {
       return `https://data.dh.gu.se/som/sound/${this.filename}`;
+    },
+    playing() {
+      return this.sound && this.sound.playing();
     },
   },
   methods: {
@@ -31,7 +33,6 @@ export default {
       this.sound = new Howl({
         src: [this.url],
         onend: () => {
-          this.playing = false;
           this.started = false;
         },
       });
@@ -40,7 +41,6 @@ export default {
       this.playing ? this.pause() : this.play();
     },
     play() {
-      this.playing = true;
       this.started = true;
       this.sound.play();
 
@@ -49,14 +49,12 @@ export default {
     },
     pause() {
       this.sound.pause();
-      this.playing = false;
     },
   },
   watch: {
     "$store.state.currentSound"(name) {
-      if (this.sound && this.sound.playing() && name !== this.filename) {
+      if (this.playing && name !== this.filename) {
         this.sound.stop();
-        this.playing = false;
         this.started = false;
       }
     },
