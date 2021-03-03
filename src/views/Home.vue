@@ -1,5 +1,10 @@
 <template>
   <div>
+    <p>
+      The Somali speech corpus contains recordings, transcriptions,
+      translations, morpheme analysis and phonological analysis of 22 000 spoken
+      phrases of Somali.
+    </p>
     <div class="search-bar">
       <font-awesome-icon :icon="['fas', 'search']" />
       <input type="search" v-model="input" spellcheck="false" @input="search" />
@@ -8,7 +13,7 @@
       <table>
         <tr>
           <th>Phrase</th>
-          <th>Translation</th>
+          <th>In English</th>
         </tr>
         <tr
           v-for="{ lpnr, gloss_item, en_trans, morphemes } in results"

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
+import About from "./views/About.vue";
 
 Vue.use(Router);
 
@@ -11,20 +12,26 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Home,
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: About,
     },
     {
       path: "/type/:typeId",
       name: "type",
       props: true,
-      component: () => import(/* webpackChunkName: "type" */ "./views/Type.vue")
+      component: () =>
+        import(/* webpackChunkName: "type" */ "./views/Type.vue"),
     },
     {
       path: "/morpheme/:morpheme",
       name: "morpheme",
       props: true,
       component: () =>
-        import(/* webpackChunkName: "morpheme" */ "./views/Morpheme.vue")
-    }
-  ]
+        import(/* webpackChunkName: "morpheme" */ "./views/Morpheme.vue"),
+    },
+  ],
 });
