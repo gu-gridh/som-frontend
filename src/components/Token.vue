@@ -1,11 +1,6 @@
 <template>
   <div class="token">
-    <font-awesome-icon
-      :icon="['far', playing ? 'pause-circle' : 'play-circle']"
-      class="icon"
-      :class="{ playing }"
-      @click="togglePlay"
-    />
+    <AudioPlayer :filename="clip_file" />
     <span class="text">
       <em>{{ som_tone }}</em>
     </span>
@@ -13,21 +8,11 @@
 </template>
 
 <script>
+import AudioPlayer from "@/components/AudioPlayer.vue";
+
 export default {
+  components: { AudioPlayer },
   props: ["som_tone", "clip_file", "Vowel_quality"],
-  data() {
-    return {
-      playing: false,
-    };
-  },
-  methods: {
-    togglePlay() {
-      this.playing = !this.playing;
-      if (this.playing) {
-        setTimeout(() => (this.playing = false), 2000);
-      }
-    },
-  },
 };
 </script>
 
@@ -40,13 +25,5 @@ export default {
 .text {
   flex: 1;
   margin-left: 0.5rem;
-}
-.icon {
-  opacity: 0.5;
-  transition: opacity 200ms;
-  &:hover,
-  &.playing {
-    opacity: 1;
-  }
 }
 </style>

@@ -4,7 +4,13 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {}
+  state: {
+    currentSound: "",
+  },
+  mutations: {
+    playingSoundId(state, name) {
+      state.currentSound = name;
+    },
+  },
+  actions: {},
 });
