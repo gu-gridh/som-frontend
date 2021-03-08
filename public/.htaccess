@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Redirect virtual paths to index.html, where client-side js will interpret the path.
+  RewriteCond %{REQUEST_FILENAME} !\.(js|css|gif|jpg|jpeg|png|ico|svg|swf|pdf|html|php|json|woff2?)$
+  RewriteCond %{REQUEST_URI} !^index
+  RewriteRule (.*) index.html [L]
+</IfModule>
