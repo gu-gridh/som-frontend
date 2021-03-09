@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap&family=Enriqueta&display=optional");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Source+Sans+Pro:wght@300;400&family=Red+Hat+Display:ital,wght@0,400;0,500;1,400&display=swap&family=Enriqueta&display=optional");
 
 * {
   box-sizing: border-box;
@@ -33,7 +33,9 @@ html {
 }
 
 #app {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -78,6 +80,10 @@ a:hover {
   margin-top: 0;
 }
 
+.mute {
+  opacity: 0.6;
+}
+
 table {
   width: 100%;
   margin: 1rem -0.5rem;
@@ -87,7 +93,7 @@ th {
   text-align: left;
 }
 td {
-  vertical-align: top;
+  vertical-align: baseline;
 }
 
 th,
@@ -97,6 +103,10 @@ th,
   font-weight: 600;
   opacity: 0.8;
   margin-bottom: 0;
+}
+
+sup {
+  line-height: 0;
 }
 
 .line-label + * {

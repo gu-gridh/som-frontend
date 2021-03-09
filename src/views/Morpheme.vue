@@ -9,15 +9,22 @@
       </div>
       <div>
         <div class="line-label">Gloss</div>
-        <h2>{{ gloss }}</h2>
+        <h2 v-if="gloss">
+          <Morpheme :morpheme="gloss" />
+        </h2>
       </div>
     </div>
-    <div><strong>Vowel quality:</strong> H</div>
+    <div v-if="vowQual">
+      <div class="line-label">Vowel Quality</div>
+      <h2>
+        <VowelQuality>{{ vowQual }}</VowelQuality>
+      </h2>
+    </div>
     <h3>Occurrences</h3>
     <p class="help">These are phrases where this morpheme occurs.</p>
     <table>
       <tr>
-        <th>Phrase</th>
+        <th>Type</th>
         <th>In English</th>
         <th>Recordings</th>
       </tr>
@@ -27,10 +34,8 @@
             {{ type.gloss_item }}
           </router-link>
         </td>
-        <td>
-          <router-link :to="{ name: 'type', params: { typeId: type.lpnr } }">
-            {{ type.en_trans }}
-          </router-link>
+        <td class="mute">
+          {{ type.en_trans }}
         </td>
         <td>
           <TokenList :tokens="type.tokens" :limit="2" />
@@ -44,10 +49,11 @@
 import { getMorpheme } from "@/assets/db";
 import Morpheme from "@/components/Morpheme";
 import TokenList from "@/components/TokenList";
+import VowelQuality from "@/components/VowelQuality.vue";
 
 export default {
   props: ["morpheme"],
-  components: { Morpheme, TokenList },
+  components: { Morpheme, TokenList, VowelQuality },
   data() {
     return {
       gloss: null,

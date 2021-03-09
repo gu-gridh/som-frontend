@@ -9,9 +9,13 @@ export default {
   },
   computed: {
     html() {
-      return this.morpheme
-        .replace(/ (\d+)$/, "<sup>$1</sup>")
-        .replace(/([A-Z]+)(?![a-z])/g, "<em>$1</em>");
+      return (
+        this.morpheme
+          // Superscript numbers.
+          .replace(/ (\d+)$/, "<sup>$1</sup>")
+          // Italicize capitals unless preceding lowercase.
+          .replace(/([A-Z]+)(?![a-z])/g, "<em>$1</em>")
+      );
     },
   },
 };

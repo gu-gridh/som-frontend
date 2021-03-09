@@ -15,6 +15,8 @@ export default {
 header {
   display: flex;
   align-items: baseline;
+  border-bottom: thin solid #aaa;
+  margin-bottom: 1rem;
 }
 
 h1 {

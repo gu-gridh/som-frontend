@@ -12,7 +12,7 @@
     <div v-if="results.length">
       <table>
         <tr>
-          <th>Phrase</th>
+          <th>Type</th>
           <th>In English</th>
         </tr>
         <tr
@@ -31,10 +31,8 @@
               />
             </div>
           </td>
-          <td>
-            <router-link :to="{ name: 'type', params: { typeId: lpnr } }">
-              {{ en_trans }}
-            </router-link>
+          <td class="mute">
+            {{ en_trans }}
           </td>
         </tr>
       </table>

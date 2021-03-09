@@ -1,7 +1,11 @@
 <template>
   <article v-if="morphemes && tokens">
-    <div class="line-label">Phrase</div>
+    <div class="line-label">Type</div>
     <h1>{{ gloss_item }}</h1>
+
+    <div class="line-label">In English</div>
+    <h3>{{ en_trans }}</h3>
+
     <table v-if="morphemes.length">
       <tr>
         <th>Morpheme</th>
@@ -20,14 +24,13 @@
           </router-link>
         </td>
         <td>
-          {{ Gloss }}
+          <Morpheme :morpheme="Gloss" />
         </td>
-        <td>{{ VowQual }}</td>
+        <td>
+          <VowelQuality>{{ VowQual }}</VowelQuality>
+        </td>
       </tr>
     </table>
-
-    <div class="line-label">In English</div>
-    <h2>{{ en_trans }}</h2>
 
     <div v-if="tokens.length">
       <h3>Recordings</h3>
@@ -40,10 +43,11 @@
 import { getType } from "@/assets/db";
 import Morpheme from "@/components/Morpheme";
 import Token from "@/components/Token";
+import VowelQuality from "@/components/VowelQuality.vue";
 
 export default {
   props: ["typeId"],
-  components: { Morpheme, Token },
+  components: { Morpheme, Token, VowelQuality },
   data() {
     return {
       gloss_item: null,
