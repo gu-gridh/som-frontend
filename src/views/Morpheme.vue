@@ -21,7 +21,6 @@
       </h2>
     </div>
     <h3>Occurrences</h3>
-    <p class="help">These are phrases where this morpheme occurs.</p>
     <TypeList :types="types" />
   </article>
 </template>
