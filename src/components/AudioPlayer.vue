@@ -72,7 +72,7 @@ export default {
   }
 
   &.started {
-    color: #dd4058;
+    color: #dd408a;
   }
 }
 </style>

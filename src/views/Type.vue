@@ -3,6 +3,11 @@
     <div class="line-label">Type</div>
     <h1>{{ gloss_item }}</h1>
 
+    <p v-if="ungrammatical" class="warning">
+      <strong>Ungrammatical?</strong>
+      This type is claimed not to normally occur in natural speech.
+    </p>
+
     <div class="line-label">In English</div>
     <h3>{{ en_trans }}</h3>
 
@@ -56,6 +61,11 @@ export default {
       tokens: null,
     };
   },
+  computed: {
+    ungrammatical() {
+      return this.gloss_item && this.gloss_item[0] == "*";
+    },
+  },
   watch: {
     typeId: {
       immediate: true,
@@ -71,5 +81,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.warning {
+  color: #dd9440;
+  font-size: smaller;
+}
 </style>
