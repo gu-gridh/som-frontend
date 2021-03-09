@@ -54,6 +54,10 @@ a:hover {
   }
 }
 
+section {
+  margin: 1rem 0;
+}
+
 .help {
   margin-top: 0;
 }
@@ -64,14 +68,23 @@ a:hover {
 
 table {
   width: 100%;
-  margin: 1rem -0.5rem;
-  border-spacing: 0.5rem 1rem;
+  border-collapse: collapse;
 }
 th {
   text-align: left;
 }
 td {
   vertical-align: baseline;
+}
+th,
+td {
+  padding: 0.5rem 0.25rem;
+  &:first-child {
+    padding-left: 0;
+  }
+  &:last-child {
+    padding-right: 0;
+  }
 }
 
 th,

@@ -11,31 +11,33 @@
     <div class="line-label">In English</div>
     <h3>{{ en_trans }}</h3>
 
-    <table v-if="morphemes.length">
-      <tr>
-        <th>Morpheme</th>
-        <th>Gloss</th>
-        <th>Vowel quality</th>
-      </tr>
-      <tr v-for="({ Morpheme, Gloss, VowQual }, i) in morphemes" :key="i">
-        <td>
-          <router-link
-            :to="{
-              name: 'morpheme',
-              params: { morpheme: Morpheme },
-            }"
-          >
-            <Morpheme :morpheme="Morpheme" />
-          </router-link>
-        </td>
-        <td>
-          <Morpheme :morpheme="Gloss" />
-        </td>
-        <td>
-          <VowelQuality>{{ VowQual }}</VowelQuality>
-        </td>
-      </tr>
-    </table>
+    <section>
+      <table v-if="morphemes.length">
+        <tr>
+          <th>Morpheme</th>
+          <th>Gloss</th>
+          <th>Vowel quality</th>
+        </tr>
+        <tr v-for="({ Morpheme, Gloss, VowQual }, i) in morphemes" :key="i">
+          <td>
+            <router-link
+              :to="{
+                name: 'morpheme',
+                params: { morpheme: Morpheme },
+              }"
+            >
+              <Morpheme :morpheme="Morpheme" />
+            </router-link>
+          </td>
+          <td>
+            <Morpheme :morpheme="Gloss" />
+          </td>
+          <td>
+            <VowelQuality>{{ VowQual }}</VowelQuality>
+          </td>
+        </tr>
+      </table>
+    </section>
 
     <div v-if="tokens.length">
       <h3>Recordings</h3>
