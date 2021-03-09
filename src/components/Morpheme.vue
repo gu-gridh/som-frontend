@@ -3,14 +3,20 @@
 </template>
 
 <script>
+import { highlight } from "@/assets/util";
+
 export default {
   props: {
     morpheme: { type: String, required: true },
+    highlight: { type: [Object, Boolean], required: false },
   },
   computed: {
     html() {
       return (
-        this.morpheme
+        (this.highlight
+          ? highlight(this.morpheme, this.highlight.start, this.highlight.end)
+          : this.morpheme
+        )
           // Superscript numbers.
           .replace(/ (\d+)$/, "<sup>$1</sup>")
           // Italicize capitals unless preceding lowercase.

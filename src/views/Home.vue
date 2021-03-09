@@ -19,7 +19,7 @@
           <th>Vowel quality</th>
         </tr>
         <tr
-          v-for="{ Morpheme, Gloss, VowQual } in expand.morphemes
+          v-for="{ Morpheme, Gloss, VowQual, highlight } in expand.morphemes
             ? results.morphemes
             : results.morphemes.slice(0, 8)"
           :key="Morpheme"
@@ -28,11 +28,19 @@
             <router-link
               :to="{ name: 'morpheme', params: { morpheme: Morpheme } }"
             >
-              <Morpheme :morpheme="Morpheme" />
+              <Morpheme
+                :morpheme="Morpheme"
+                :highlight="
+                  highlight && highlight.key === 'Morpheme' && highlight
+                "
+              />
             </router-link>
           </td>
           <td class="mute">
-            <Morpheme :morpheme="Gloss" />
+            <Morpheme
+              :morpheme="Gloss"
+              :highlight="highlight && highlight.key === 'Gloss' && highlight"
+            />
           </td>
           <td>
             <VowelQuality>{{ VowQual }}</VowelQuality>
@@ -40,7 +48,7 @@
         </tr>
       </table>
       <div
-        v-if="results.morphemes.length - 8"
+        v-if="results.morphemes.length - 8 > 0"
         class="expand"
         @click="toggleExpandMorphemes"
       >
@@ -59,14 +67,25 @@
           <th>In English</th>
         </tr>
         <tr
-          v-for="{ lpnr, gloss_item, en_trans, morphemes } in expand.types
-            ? results.types
-            : results.types.slice(0, 8)"
+          v-for="{
+            lpnr,
+            gloss_item,
+            en_trans,
+            morphemes,
+            highlight,
+          } in expand.types ? results.types : results.types.slice(0, 8)"
           :key="lpnr"
         >
           <td>
             <router-link :to="{ name: 'type', params: { typeId: lpnr } }">
-              {{ gloss_item }}
+              <template v-if="highlight && highlight.key === 'gloss_item'">
+                <span
+                  v-html="
+                    utilHighlight(gloss_item, highlight.start, highlight.end)
+                  "
+                />
+              </template>
+              <template v-else>{{ gloss_item }}</template>
             </router-link>
             <div v-if="morphemes" class="morphemes-row">
               <Morpheme
@@ -77,12 +96,17 @@
             </div>
           </td>
           <td class="mute">
-            {{ en_trans }}
+            <template v-if="highlight && highlight.key === 'en_trans'">
+              <span
+                v-html="utilHighlight(en_trans, highlight.start, highlight.end)"
+              />
+            </template>
+            <template v-else>{{ en_trans }}</template>
           </td>
         </tr>
       </table>
       <div
-        v-if="results.types.length - 8"
+        v-if="results.types.length - 8 > 0"
         class="expand"
         @click="toggleExpandTypes"
       >
@@ -93,7 +117,10 @@
       </div>
     </div>
 
-    <div v-if="!results.types.length && !results.morphemes.length">
+    <div
+      v-if="!results.types.length && !results.morphemes.length"
+      class="no-results"
+    >
       <em>No results</em>
     </div>
   </div>
@@ -101,6 +128,7 @@
 
 <script>
 import { search } from "@/assets/db";
+import { highlight as utilHighlight } from "@/assets/util";
 import Morpheme from "@/components/Morpheme.vue";
 import VowelQuality from "@/components/VowelQuality.vue";
 
@@ -122,6 +150,7 @@ export default {
     },
   },
   methods: {
+    utilHighlight,
     async search() {
       if (!this.input) {
         this.results = { morphemes: [], types: [] };
@@ -163,5 +192,8 @@ input {
 .expand {
   font-size: smaller;
   cursor: pointer;
+}
+.no-results {
+  margin: 2rem 0;
 }
 </style>
