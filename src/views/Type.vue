@@ -12,31 +12,7 @@
     <h3>{{ en_trans }}</h3>
 
     <section>
-      <table v-if="morphemes.length">
-        <tr>
-          <th>Morpheme</th>
-          <th>Gloss</th>
-          <th>Vowel quality</th>
-        </tr>
-        <tr v-for="({ Morpheme, Gloss, VowQual }, i) in morphemes" :key="i">
-          <td>
-            <router-link
-              :to="{
-                name: 'morpheme',
-                params: { morpheme: Morpheme },
-              }"
-            >
-              <Morpheme :morpheme="Morpheme" />
-            </router-link>
-          </td>
-          <td>
-            <Morpheme :morpheme="Gloss" />
-          </td>
-          <td>
-            <VowelQuality>{{ VowQual }}</VowelQuality>
-          </td>
-        </tr>
-      </table>
+      <MorphemeList v-if="morphemes.length" :morphemes="morphemes" />
     </section>
 
     <div v-if="tokens.length">
@@ -48,13 +24,12 @@
 
 <script>
 import { getType } from "@/assets/db";
-import Morpheme from "@/components/Morpheme";
+import MorphemeList from "@/components/MorphemeList.vue";
 import Token from "@/components/Token";
-import VowelQuality from "@/components/VowelQuality.vue";
 
 export default {
   props: ["typeId"],
-  components: { Morpheme, Token, VowelQuality },
+  components: { MorphemeList, Token },
   data() {
     return {
       gloss_item: null,
