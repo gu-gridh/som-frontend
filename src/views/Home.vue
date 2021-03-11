@@ -97,7 +97,7 @@ export default {
     },
   },
   activated() {
-    document.title = "Somali speech corpus";
+    this.$store.commit("setTitle", "");
     // Copy #hash to search input.
     if (window.location.hash.slice(1)) {
       this.input = window.location.hash.slice(1);

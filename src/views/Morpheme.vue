@@ -58,7 +58,7 @@ export default {
         this.gloss = response.morpheme.Gloss;
         this.vowQual = response.morpheme.VowQual;
         this.types = response.types;
-        document.title = this.morpheme;
+        this.$store.commit("setTitle", this.morpheme);
       },
     },
   },

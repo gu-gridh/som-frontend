@@ -18,7 +18,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  activated() {
+    this.$store.commit("setTitle", "About");
+  },
+};
 </script>
 
 <style>
