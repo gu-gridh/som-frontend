@@ -9,7 +9,9 @@ html {
 }
 
 body {
-  padding: 1rem;
+  @media screen and (min-width: 600px) {
+    padding: 1rem;
+  }
   background-color: #ffffff;
   background-image: url("assets/diamonds.svg");
 }
@@ -88,6 +90,21 @@ td {
   }
 }
 
+// Poor man's responsive tables.
+@media screen and (max-width: 600px) {
+  th {
+    display: none;
+  }
+  tr {
+    display: block;
+    margin: 1rem 0;
+  }
+  td {
+    display: block;
+    padding: 0.2rem 0;
+  }
+}
+
 th,
 .line-label {
   font-size: small;
@@ -106,8 +123,10 @@ sup {
 }
 
 .columns {
-  display: flex;
-  & > * {
-    flex: 1;
+  @media screen and (min-width: 600px) {
+    display: flex;
+    & > * {
+      flex: 1;
+    }
   }
 }

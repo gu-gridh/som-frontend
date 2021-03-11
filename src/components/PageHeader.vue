@@ -1,7 +1,9 @@
 <template>
   <header class="page-header">
     <h1><router-link to="/">Somali speech corpus</router-link></h1>
-    <router-link to="/about">About</router-link>
+    <nav>
+      <router-link to="/about">About</router-link>
+    </nav>
   </header>
 </template>
 
@@ -13,8 +15,10 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  display: flex;
-  align-items: baseline;
+  @media screen and (min-width: 600px) {
+    display: flex;
+    align-items: baseline;
+  }
   border-bottom: thin solid #aaa;
   margin-bottom: 1rem;
 }
@@ -22,5 +26,23 @@ header {
 h1 {
   flex: 1;
   margin-top: 0;
+  line-height: 1;
+  // margin-bottom: 0;
+}
+
+nav {
+  margin-bottom: 1rem;
+
+  > * {
+    display: block;
+
+    @media screen and (min-width: 600px) {
+      display: inline-block;
+
+      &:not(:first-child) {
+        margin-left: 1em;
+      }
+    }
+  }
 }
 </style>

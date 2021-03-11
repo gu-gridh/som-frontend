@@ -9,12 +9,12 @@
       </div>
       <div>
         <div class="line-label">Gloss</div>
-        <h2 v-if="gloss">
+        <h3 v-if="gloss">
           <Morpheme :morpheme="gloss" />
-        </h2>
+        </h3>
       </div>
     </div>
-    <div v-if="vowQual">
+    <section v-if="vowQual">
       <div class="line-label">
         <InfoLabel>
           Vowel quality
@@ -24,10 +24,10 @@
           </template>
         </InfoLabel>
       </div>
-      <h2>
+      <h3>
         <VowelQuality>{{ vowQual }}</VowelQuality>
-      </h2>
-    </div>
+      </h3>
+    </section>
     <h3>Occurrences</h3>
     <TypeList :types="types" />
   </article>
