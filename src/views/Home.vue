@@ -7,7 +7,7 @@
     </p>
     <div class="search-bar">
       <font-awesome-icon :icon="['fas', 'search']" />
-      <input type="search" v-model="input" spellcheck="false" @input="search" />
+      <input type="search" v-model="input" spellcheck="false" />
     </div>
 
     <div v-if="results.morphemes.length">
@@ -85,6 +85,7 @@ export default {
         return;
       }
       this.results = await search(this.input);
+      window.history.replaceState(null, null, "#" + this.input);
     },
     toggleExpandMorphemes() {
       this.$store.commit("toggleSearchExpand", {
@@ -93,6 +94,19 @@ export default {
     },
     toggleExpandTypes() {
       this.$store.commit("toggleSearchExpand", { types: !this.expand.types });
+    },
+  },
+  activated() {
+    document.title = "Somali speech corpus";
+    // Copy #hash to search input.
+    if (window.location.hash.slice(1)) {
+      this.input = window.location.hash.slice(1);
+    }
+  },
+  watch: {
+    // Perform search when the input is changed.
+    input() {
+      this.search();
     },
   },
 };

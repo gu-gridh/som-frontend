@@ -77,6 +77,7 @@ export default {
         this.en_trans = type.en_trans;
         this.morphemes = type.morphemes;
         this.tokens = type.tokens;
+        document.title = this.gloss_item;
       },
     },
   },
