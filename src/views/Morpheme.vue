@@ -19,8 +19,14 @@
         <InfoLabel>
           Vowel quality
           <template v-slot:info>
-            <div><VowelQuality>L</VowelQuality>: <em>light</em></div>
-            <div><VowelQuality>H</VowelQuality>: <em>heavy</em></div>
+            <p>
+              The inherent vowel quality of a morpheme is hypothesized as based
+              on observations in speech.
+            </p>
+            <p>
+              <VowelQuality>L</VowelQuality>: <em>light</em><br />
+              <VowelQuality>H</VowelQuality>: <em>heavy</em>
+            </p>
           </template>
         </InfoLabel>
       </div>
