@@ -15,7 +15,15 @@
       </div>
     </div>
     <div v-if="vowQual">
-      <div class="line-label">Vowel Quality</div>
+      <div class="line-label">
+        <InfoLabel>
+          Vowel quality
+          <template v-slot:info>
+            <div><VowelQuality>L</VowelQuality>: <em>light</em></div>
+            <div><VowelQuality>H</VowelQuality>: <em>heavy</em></div>
+          </template>
+        </InfoLabel>
+      </div>
       <h2>
         <VowelQuality>{{ vowQual }}</VowelQuality>
       </h2>
@@ -29,11 +37,12 @@
 import { getMorpheme } from "@/assets/db";
 import Morpheme from "@/components/Morpheme.vue";
 import TypeList from "@/components/TypeList.vue";
+import InfoLabel from "@/components/InfoLabel.vue";
 import VowelQuality from "@/components/VowelQuality.vue";
 
 export default {
   props: ["morpheme"],
-  components: { Morpheme, TypeList, VowelQuality },
+  components: { Morpheme, TypeList, InfoLabel, VowelQuality },
   data() {
     return {
       gloss: null,

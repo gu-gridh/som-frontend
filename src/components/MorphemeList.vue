@@ -3,7 +3,15 @@
     <tr>
       <th>Morpheme</th>
       <th>Gloss</th>
-      <th>Vowel quality</th>
+      <th>
+        <InfoLabel>
+          Vowel quality
+          <template v-slot:info>
+            <div><VowelQuality>L</VowelQuality>: <em>light</em></div>
+            <div><VowelQuality>H</VowelQuality>: <em>heavy</em></div>
+          </template>
+        </InfoLabel>
+      </th>
     </tr>
 
     <tr
@@ -36,12 +44,13 @@
 <script>
 import Morpheme from "@/components/Morpheme.vue";
 import VowelQuality from "@/components/VowelQuality.vue";
+import InfoLabel from "@/components/InfoLabel.vue";
 
 export default {
   props: {
     morphemes: Array,
   },
-  components: { Morpheme, VowelQuality },
+  components: { Morpheme, VowelQuality, InfoLabel },
 };
 </script>
 
