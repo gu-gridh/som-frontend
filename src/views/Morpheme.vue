@@ -35,8 +35,10 @@
         <VowelQuality>{{ vowQual }}</VowelQuality>
       </h3>
     </section>
-    <h3>Occurrences</h3>
-    <TypeList :types="types" />
+    <section v-if="types && types.length">
+      <h3>Occurrences</h3>
+      <TypeList :types="types" />
+    </section>
   </article>
 </template>
 
