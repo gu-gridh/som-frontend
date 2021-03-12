@@ -7,8 +7,11 @@
         <InfoLabel>
           Vowel quality
           <template v-slot:info>
-            <div><VowelQuality>L</VowelQuality>: <em>light</em></div>
-            <div><VowelQuality>H</VowelQuality>: <em>heavy</em></div>
+            <p>
+              <VowelQuality>L</VowelQuality>: <em>light</em><br />
+              <VowelQuality>M</VowelQuality>: <em>medium</em><br />
+              <VowelQuality>H</VowelQuality>: <em>heavy</em>
+            </p>
           </template>
         </InfoLabel>
       </th>
@@ -55,13 +58,10 @@ export default {
 </script>
 
 <style scoped>
-th:first-child {
-  width: 40%;
-}
-th:nth-child(2) {
-  width: 40%;
+table {
+  table-layout: fixed;
 }
 th:nth-child(3) {
-  width: 20%;
+  width: 10em;
 }
 </style>

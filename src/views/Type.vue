@@ -32,6 +32,7 @@
             </p>
             <p>
               <VowelQuality>L</VowelQuality>: <em>light</em><br />
+              <VowelQuality>M</VowelQuality>: <em>medium</em><br />
               <VowelQuality>H</VowelQuality>: <em>heavy</em>
             </p>
           </template>

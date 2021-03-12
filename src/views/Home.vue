@@ -10,6 +10,8 @@
       <input type="search" v-model="input" spellcheck="false" />
     </div>
 
+    <Introduction v-if="!input" />
+
     <div v-if="results.morphemes.length">
       <h3>Morphemes</h3>
       <MorphemeList
@@ -48,7 +50,7 @@
     </div>
 
     <div
-      v-if="!results.types.length && !results.morphemes.length"
+      v-if="input && !results.types.length && !results.morphemes.length"
       class="no-results"
     >
       <em>No results</em>
@@ -58,12 +60,13 @@
 
 <script>
 import { search } from "@/assets/db";
+import Introduction from "@/components/Introduction.vue";
 import MorphemeList from "@/components/MorphemeList.vue";
 import TypeList from "@/components/TypeList.vue";
 
 export default {
   name: "home",
-  components: { MorphemeList, TypeList },
+  components: { Introduction, MorphemeList, TypeList },
   data() {
     return {
       input: "",
@@ -100,7 +103,7 @@ export default {
     this.$store.commit("setTitle", "");
     // Copy #hash to search input.
     if (window.location.hash.slice(1)) {
-      this.input = window.location.hash.slice(1);
+      this.input = decodeURIComponent(window.location.hash.slice(1));
     }
   },
   watch: {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <Token
-      v-for="token in expanded ? tokens : tokens.slice(0, 2)"
+      v-for="token in expanded ? tokens : tokens.slice(0, limit)"
       :key="token.lpnr"
       v-bind="token"
     />

@@ -69,12 +69,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-th {
-  width: 33%;
-}
-
-.no-tokens th {
-  width: 50%;
+table {
+  table-layout: fixed;
 }
 
 .morphemes-row {
