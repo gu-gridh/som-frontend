@@ -1,14 +1,20 @@
 <template>
   <nav v-if="prev">
     <a :href="prev.route.path" class="back" @click.prevent="goBack">
-      <font-awesome-icon :icon="['fas', 'arrow-left']" size="xs" />
-      {{ prevTitle }}
+      <font-awesome-icon :icon="['fas', 'arrow-left']" size="xs" />&nbsp;
+      <Morpheme v-if="prev.route.name === 'morpheme'" :morpheme="prev.title" />
+      <template v-else>
+        {{ prevTitle }}
+      </template>
     </a>
   </nav>
 </template>
 
 <script>
+import Morpheme from "@/components/Morpheme.vue";
+
 export default {
+  components: { Morpheme },
   computed: {
     prev() {
       return this.$store.state.history[this.$store.state.history.length - 2];

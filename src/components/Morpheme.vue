@@ -21,6 +21,8 @@ export default {
           .replace(/ (\d+)$/, "<sup>$1</sup>")
           // Italicize capitals unless preceding lowercase.
           .replace(/([A-Z]+)(?![a-z])/g, "<em>$1</em>")
+          // Italicize capitals following a dash.
+          .replace(/(?<=-)([A-Z]+)/g, "<em>$1</em>")
       );
     },
   },
