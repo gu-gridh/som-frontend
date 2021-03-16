@@ -61,10 +61,12 @@ a:hover {
   color: #4189dd;
   text-decoration: none;
 
+  &.a-inherit,
   h1 & {
-    text-decoration: inherit;
     color: inherit;
+    text-decoration: inherit;
   }
+
 }
 
 section {

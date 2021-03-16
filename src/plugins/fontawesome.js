@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import {
   faArrowLeft,
+  faDownload,
   faQuestionCircle,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
@@ -14,6 +15,7 @@ import {
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 library.add(faArrowLeft);
+library.add(faDownload);
 library.add(faPauseCircle);
 library.add(faPlayCircle);
 library.add(faQuestionCircle);
