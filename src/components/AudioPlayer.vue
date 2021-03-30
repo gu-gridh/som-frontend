@@ -41,9 +41,7 @@ export default {
 
       // Load 3d-party library dynamically
       // See: https://webpack.js.org/guides/code-splitting/#dynamic-imports
-      const { default: Howl } = await import(
-        /* webpackChunkName: "howler" */ "howler"
-      );
+      const { Howl } = await import(/* webpackChunkName: "howler" */ "howler");
       this.sound = new Howl({
         src: [this.url],
         onend: () => {
