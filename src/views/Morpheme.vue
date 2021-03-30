@@ -20,7 +20,7 @@
           Vowel quality
           <template v-slot:info>
             <p>
-              The inherent vowel quality of a morpheme is hypothesized as based
+              The inherent vowel quality of a morpheme is hypothesised as based
               on observations in speech.
             </p>
             <p>

@@ -1,9 +1,13 @@
 <template>
   <div>
     <p>
-      The Somali speech corpus contains recordings, transcriptions,
-      translations, morpheme analysis and phonological analysis of 22 000 spoken
-      phrases of Somali.
+      The <strong>Somali Speech Corpus</strong> contains recordings of ca.
+      22,000 units of spoken Somali, both words, phrases and clauses. In all
+      units, the realisation of the Somali tonal accent has been analysed and
+      the data has been transcribed and marked up for high tones. The data has
+      also been rendered in standard orthography and supplied with morpheme
+      analysis and English translations. In a smaller part of the data, also
+      vowel quality has been analysed and marked up.
     </p>
     <div class="search-bar">
       <font-awesome-icon :icon="['fas', 'search']" />

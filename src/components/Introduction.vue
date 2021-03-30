@@ -22,7 +22,7 @@
     <p>
       This project primarily explores Somali vowels, which notably sport a
       distinction between <em>heavy</em> and <em>light</em>. Consecutive
-      syllables harmonize in this quality, so that a vowel may change depending
+      syllables harmonise in this quality, so that a vowel may change depending
       on neighbouring vowels.
     </p>
     <p>
