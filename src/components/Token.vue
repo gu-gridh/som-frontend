@@ -3,7 +3,11 @@
     <AudioPlayer :filename="clip_file" />
     <span class="speaker">{{ clip_file.slice(0, 2) }}</span>
     <div class="text">
-      <em>{{ som_tone }}</em>
+      <em>
+        <router-link :to="{ name: 'token', params: { tokenId: lpnr } }">
+          {{ som_tone }}
+        </router-link>
+      </em>
     </div>
     <div v-if="Vowel_quality" class="vowel">
       <VowelQuality>{{ Vowel_quality }}</VowelQuality>
@@ -17,7 +21,7 @@ import VowelQuality from "@/components/VowelQuality.vue";
 
 export default {
   components: { AudioPlayer, VowelQuality },
-  props: ["som_tone", "clip_file", "Vowel_quality"],
+  props: ["lpnr", "som_tone", "clip_file", "Vowel_quality"],
 };
 </script>
 

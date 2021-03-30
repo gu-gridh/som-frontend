@@ -33,5 +33,12 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "morpheme" */ "./views/Morpheme.vue"),
     },
+    {
+      path: "/token/:tokenId",
+      name: "token",
+      props: true,
+      component: () =>
+        import(/* webpackChunkName: "token" */ "./views/Token.vue"),
+    },
   ],
 });

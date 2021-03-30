@@ -20,3 +20,8 @@ export async function getMorpheme(morpheme) {
   const res = await axios.get(apiUrl("morpheme.php"), { params: { morpheme } });
   return res.data;
 }
+
+export async function getToken(id) {
+  const res = await axios.get(apiUrl("token.php"), { params: { token: id } });
+  return res.data;
+}

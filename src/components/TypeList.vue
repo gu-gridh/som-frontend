@@ -44,7 +44,7 @@
         <template v-else>{{ en_trans }}</template>
       </td>
 
-      <td v-if="!noTokens">
+      <td v-if="!noTokens && tokens">
         <TokenList :tokens="tokens" :limit="2" />
       </td>
     </tr>
