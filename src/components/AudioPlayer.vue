@@ -15,8 +15,6 @@
 </template>
 
 <script>
-import { Howl } from "howler";
-
 export default {
   props: ["filename"],
   data() {
@@ -38,8 +36,14 @@ export default {
     },
   },
   methods: {
-    load(force = false) {
+    async load(force = false) {
       if (this.sound && !force) return;
+
+      // Load 3d-party library dynamically
+      // See: https://webpack.js.org/guides/code-splitting/#dynamic-imports
+      const { default: Howl } = await import(
+        /* webpackChunkName: "howler" */ "howler"
+      );
       this.sound = new Howl({
         src: [this.url],
         onend: () => {
