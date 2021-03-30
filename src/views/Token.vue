@@ -12,7 +12,7 @@
       </div>
       <div>
         <div class="line-label">Speaker</div>
-        {{ clip_file.split("__")[0] }}
+        {{ speaker }}
       </div>
     </div>
     <section>
@@ -37,6 +37,22 @@ export default {
       type: null,
     };
   },
+  computed: {
+    speaker() {
+      const code = this.clip_file.split("__")[0];
+      const description = {
+        Mm: "Mogadishu, male, ca 30 y.o.",
+        Mn: "Mogadishu, male, ca 30 y.o.",
+        Bm: "Beledweyne, male, ca 30 y.o.",
+        Jm: "Jigjiga, male, ca 30 y.o.",
+        Mo: "Mogadishu, male, ca 30 y.o.",
+        Dm: "Djibouti, male, ca 30 y.o.",
+        Km: "Kismayo, male, ca 30 y.o.",
+        Mf: "Mogadishu, female, ca 30 y.o.",
+      }[code];
+      return `${code}: ${description}`;
+    },
+  },
   watch: {
     tokenId: {
       immediate: true,
@@ -52,5 +68,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

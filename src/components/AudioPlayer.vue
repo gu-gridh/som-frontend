@@ -38,8 +38,8 @@ export default {
     },
   },
   methods: {
-    load() {
-      if (this.sound) return;
+    load(force = false) {
+      if (this.sound && !force) return;
       this.sound = new Howl({
         src: [this.url],
         onend: () => {
@@ -67,6 +67,10 @@ export default {
         this.sound.stop();
         this.started = false;
       }
+    },
+    filename() {
+      // Reload sound if filename changes.
+      this.load(true);
     },
   },
 };
