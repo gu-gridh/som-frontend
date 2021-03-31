@@ -1,26 +1,16 @@
-# som-frontend
+# Somali Speech Corpus: frontend
 
-## Project setup
-```
-yarn install
-```
+Vue frontend for https://ssc.dh.gu.se/
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+Relies on [som-backend](https://github.com/CDH-DevTeam/som-backend).
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+Uses [Howler](https://howlerjs.com/) for sound playback.
 
-### Run your tests
-```
-yarn run test
-```
+## Configuration
 
-### Lints and fixes files
-```
-yarn run lint
+Uses [environment variables](https://cli.vuejs.org/guide/mode-and-env.html#environment-variables). Example `.env` file with default values:
+
+```ini
+# Backend URL base
+VUE_APP_API_BASE="http://localhost:8030"
 ```
