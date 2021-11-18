@@ -6,18 +6,24 @@
       <keep-alive>
         <router-view />
       </keep-alive>
+      <PageFooter />
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import PageHeader from "@/components/PageHeader.vue";
 import Navigation from "@/components/Navigation.vue";
-import { mapState } from "vuex";
+import PageFooter from "./components/PageFooter.vue";
 
 export default {
   name: "App",
-  components: { PageHeader, Navigation },
+  components: {
+    PageHeader,
+    Navigation,
+    PageFooter,
+  },
   computed: {
     ...mapState(["title", "history"]),
     appTitle: () => "Somali speech corpus",
