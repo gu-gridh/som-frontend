@@ -107,18 +107,15 @@
     </figure>
 
     <h2>References</h2>
-    <ul class="reference-list">
+    <References>
       <li>
-        Kaldhol, Nina Hagen. 2017.
-        <em
-          >The Oslo Dialect of Somali: Tonal adaptations of Norwegian
-          loanwords</em
-        >. MA thesis. University of Oslo.
+        Kaldhol, Nina Hagen. 2017. The Oslo Dialect of Somali: Tonal adaptations
+        of Norwegian loanwords. MA thesis. University of Oslo.
         <a href="http://urn.nb.no/URN:NBN:no-61048"
           >http://urn.nb.no/URN:NBN:no-61048</a
         >
       </li>
-    </ul>
+    </References>
 
     <h2>Glossing abbreviations</h2>
     <GlossingLegend />
@@ -130,7 +127,8 @@ import TypeList from "@/components/TypeList.vue";
 import TokenList from "@/components/TokenList.vue";
 import VowelQuality from "@/components/VowelQuality.vue";
 import MorphemeList from "@/components/MorphemeList.vue";
-import GlossingLegend from "./GlossingLegend.vue";
+import GlossingLegend from "@/components/GlossingLegend.vue";
+import References from "@/components/References.vue";
 
 export default {
   components: {
@@ -139,6 +137,7 @@ export default {
     VowelQuality,
     MorphemeList,
     GlossingLegend,
+    References,
   },
   computed: {
     type() {
@@ -270,15 +269,6 @@ export default {
   @media screen and (min-width: 600px) {
     margin: 2rem auto;
     width: 80%;
-  }
-}
-
-.reference-list {
-  padding-left: 0;
-  li {
-    list-style-type: none;
-    text-indent: -1rem;
-    padding-left: 1rem;
   }
 }
 </style>
