@@ -57,7 +57,7 @@
       click on the type you will find a more detailed glossing followed by a
       list of recordings.
     </p>
-    <TypeList :types="[type]" noTokens class="example" />
+    <TypeList v-if="type" :types="[type]" noTokens class="example" />
 
     <h2>Tokens</h2>
     <p>
@@ -70,7 +70,12 @@
         >2017</a
       >: 31–43).
     </p>
-    <TokenList :tokens="tokens" :limit="2" class="example" />
+    <TokenList
+      v-if="tokens && tokens.length"
+      :tokens="tokens"
+      :limit="2"
+      class="example"
+    />
 
     <h2>Vowel quality</h2>
     <p>
@@ -90,12 +95,20 @@
       <VowelQuality>M</VowelQuality>: <em>medium</em><br />
       <VowelQuality>H</VowelQuality>: <em>heavy (marked)</em>
     </p>
-    <TokenList :tokens="vowelTokens" class="example" />
+    <TokenList
+      v-if="vowelTokens.length"
+      :tokens="vowelTokens"
+      class="example"
+    />
     <p>
       Vowel quality is also annotated for some morphemes, representing the
       proposed underlying vowel quality of that morpheme.
     </p>
-    <MorphemeList :morphemes="vowelMorphemes" class="example" />
+    <MorphemeList
+      v-if="vowelMorphemes.length"
+      :morphemes="vowelMorphemes"
+      class="example"
+    />
 
     <h2>Somali vowel chart</h2>
     <figure class="vowel-chart">
@@ -129,6 +142,7 @@ import VowelQuality from "@/components/VowelQuality.vue";
 import MorphemeList from "@/components/MorphemeList.vue";
 import GlossingLegend from "@/components/GlossingLegend.vue";
 import References from "@/components/References.vue";
+import { getType, search } from "@/assets/db";
 
 export default {
   components: {
@@ -139,126 +153,23 @@ export default {
     GlossingLegend,
     References,
   },
-  computed: {
-    type() {
-      return {
-        lpnr: "5903",
-        gloss_item: "Maxay samaynaysaa hooyo?",
-        en_trans: "What is mother doing?",
-        morphemes: [
-          "maxay",
-          "-Ø 6",
-          "ay",
-          "samee-",
-          "-n",
-          "-ay 1",
-          "-t",
-          "-aa 2",
-          "hooy-",
-          "-o",
-        ],
-      };
-    },
-    tokens() {
-      return [
-        {
-          lpnr: "11582",
-          clip_file: "Mo__3__77.wav",
-          data_item: "Maxay samaynaysaa hooyo?",
-          som_tone: "Maxáy samaýnaysaa hoóyo?",
-          Vowel_quality: "",
-        },
-        {
-          lpnr: "11583",
-          clip_file: "Mo__3__78.wav",
-          data_item: "Maxay samaynaysaa hooyo?",
-          som_tone: "Maxáy samaýnaysaa hooyó?",
-          Vowel_quality: "",
-        },
-        {
-          lpnr: "11584",
-          clip_file: "Mo__3__79.wav",
-          data_item: "Maxay samaynaysaa hooyo?",
-          som_tone: "Maxáy samaýnaysaa hooyó?",
-          Vowel_quality: "",
-        },
-        {
-          lpnr: "11588",
-          clip_file: "Mo__3__83.wav",
-          data_item: "Maxay samaynaysaa hooyo?",
-          som_tone: "Maxáy samaýnaysaa hooyó?",
-          Vowel_quality: "",
-        },
-        {
-          lpnr: "11589",
-          clip_file: "Mo__3__84.wav",
-          data_item: "Maxay samaynaysaa hooyo?",
-          som_tone: "Maxáy samaýnaysaá hooyó?",
-          Vowel_quality: "",
-        },
-        {
-          lpnr: "11593",
-          clip_file: "Mo__3__88.wav",
-          data_item: "Maxay samaynaysaa hooyo?",
-          som_tone: "Maxáy samaýnaysaa hooy...?",
-          Vowel_quality: "",
-        },
-        {
-          lpnr: "11596",
-          clip_file: "Mo__3__91.wav",
-          data_item: "Maxay samaynaysaa hooyo?",
-          som_tone: "Maxáy samaýnaysaa hoóyo?",
-          Vowel_quality: "",
-        },
-        {
-          lpnr: "11597",
-          clip_file: "Mo__3__92.wav",
-          data_item: "Maxay samaynaysaa hooyo?",
-          som_tone: "Maxáy samaýnaysaa hooyó?",
-          Vowel_quality: "",
-        },
-      ];
-    },
-    vowelTokens() {
-      return [
-        {
-          lpnr: "19669",
-          clip_file: "Km__16__721.wav",
-          data_item: "wiilashaada",
-          som_tone: "wiiláshaada",
-          Vowel_quality: "H H HM L",
-        },
-        {
-          lpnr: "19670",
-          clip_file: "Km__16__722.wav",
-          data_item: "wiilashaada",
-          som_tone: "wiiláshaada",
-          Vowel_quality: "H H HM M",
-        },
-        {
-          lpnr: "19672",
-          clip_file: "Km__16__724.wav",
-          data_item: "wiilashaada",
-          som_tone: "wiiláshaada",
-          Vowel_quality: "H H HL L",
-        },
-        {
-          lpnr: "19674",
-          clip_file: "Km__16__726.wav",
-          data_item: "wiilashaada",
-          som_tone: "wiiláshaada",
-          Vowel_quality: "H",
-        },
-      ];
-    },
-    vowelMorphemes() {
-      return [
-        { Morpheme: "wiil", Gloss: "boyM", VowQual: "H" },
-        { Morpheme: "-aC", Gloss: "PL", VowQual: "L > H" },
-        { Morpheme: "-taa", Gloss: "POSS.2.SG", VowQual: "L > H" },
-        { Morpheme: "-ta", Gloss: "DEF", VowQual: "L > H" },
-      ];
-    },
+  data: () => ({
+    type: null,
+    tokens: [],
+    vowelTokens: [],
+    vowelMorphemes: [],
+  }),
+  async created() {
+    search("Maxay samaynaysaa hooyo?").then(
+      (results) => (this.type = results.types[0])
+    );
+
+    getType(5903).then((type) => (this.tokens = type.tokens));
+
+    getType(10839).then((type) => {
+      this.vowelTokens = type.tokens.slice(-5);
+      this.vowelMorphemes = type.morphemes;
+    });
   },
 };
 </script>
