@@ -1,6 +1,6 @@
 <template>
   <header class="page-header">
-    <h1><router-link to="/">Somali speech corpus</router-link></h1>
+    <h1><router-link to="/">Somali prosody database</router-link></h1>
     <nav>
       <router-link to="/about">About</router-link>
     </nav>
@@ -32,6 +32,7 @@ h1 {
 
 nav {
   margin-bottom: 1rem;
+  margin-left: 1rem;
 
   > * {
     display: block;

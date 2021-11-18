@@ -1,13 +1,17 @@
 <template>
   <div>
     <p>
-      The <strong>Somali Speech Corpus</strong> contains recordings of ca.
-      22,000 units of spoken Somali, both words, phrases and clauses. In all
-      units, the realisation of the Somali tonal accent has been analysed and
-      the data has been transcribed and marked up for high tones. The data has
-      also been rendered in standard orthography and supplied with morpheme
-      analysis and English translations. In a smaller part of the data, also
-      vowel quality has been analysed and marked up.
+      The <strong>Somali prosody database</strong> contains approximately 22,000
+      recorded units of spoken Somali, both words, phrases and clauses. The
+      recordings were made within the project ”<a
+        href="https://www.gu.se/en/research/somali-and-prosodic-typology"
+        >Somali and Prosodic Typology</a
+      >”, which was funded by the Swedish Research Council 2016–2019.
+    </p>
+    <p>To get started, just type a search string in the search box below.</p>
+    <p>To listen to a recording, click the play icon in front of each token.</p>
+    <p>
+      To download the recording, click the icon to the right of the play icon.
     </p>
     <div class="search-bar">
       <font-awesome-icon :icon="['fas', 'search']" />

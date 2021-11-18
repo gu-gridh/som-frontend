@@ -103,6 +103,10 @@ td {
   }
 }
 
+img {
+  max-width: 100%;
+}
+
 // Poor man's responsive tables.
 @media screen and (max-width: 600px) {
   th {
