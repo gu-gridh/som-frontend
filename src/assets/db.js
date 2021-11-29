@@ -1,6 +1,8 @@
 import axios from "axios";
 
 const API_BASE = process.env.VUE_APP_API_BASE || "http://localhost:8030";
+export const SOUND_BASE =
+  process.env.VUE_APP_SOUND_BASE || "https://data.dh.gu.se/som/sound/";
 
 function apiUrl(endpoint) {
   return `${API_BASE}/${endpoint}`;

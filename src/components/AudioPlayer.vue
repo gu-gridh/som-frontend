@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { SOUND_BASE } from "@/assets/db";
+
 export default {
   props: ["filename"],
   data() {
@@ -25,7 +27,7 @@ export default {
   },
   computed: {
     url() {
-      return `https://data.dh.gu.se/som/sound/${this.filename}`;
+      return SOUND_BASE + this.filename;
     },
     urlDownload() {
       // Special server configuration required to serve this as application/octet-stream
