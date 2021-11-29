@@ -3,13 +3,16 @@
     <h2>About the Somali prosody database</h2>
     <p>
       The Somali prosody database makes available the data collected in the
-      Swedish Vetenskapsrådet (VR) ÄR-HS project entitled, “<a
+      project ‘<a
         href="https://www.gu.se/en/research/somali-and-prosodic-typology"
         >Somali and Prosodic Typology</a
-      >.” Diarienummer 2015-01394. Project members included Laura J. Downing and
-      Morgan Nilsson, both of the University of Gothenburg, and Maarten Mous,
-      Leiden University. Yasuko Nagano-Madsen of the University of Gothenburg
-      also participated in the project.
+      >’, funded by the Swedish Research Council (Vetenskapsrådet, diarienummer
+      2015-01394). Project members included Laura J. Downing and Morgan Nilsson,
+      both of the University of Gothenburg, and Maarten Mous, Leiden University.
+      Yasuko Nagano-Madsen of the University of Gothenburg also participated.
+      Arild Matsson at the
+      <a href="https://dh.gu.se/">Centre for Digital Humanities</a> (UGot) has
+      prepared the database for publishing and developed the web interface.
     </p>
     <p>
       The goal of the project was to document and analyze two understudied
