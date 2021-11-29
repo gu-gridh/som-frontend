@@ -1,6 +1,8 @@
 <template>
   <footer>
-    <CdhLogo />
+    <a href="https://dh.gu.se/">
+      <CdhLogo />
+    </a>
   </footer>
 </template>
 
