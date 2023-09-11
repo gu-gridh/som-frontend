@@ -22,7 +22,7 @@ footer {
   @media screen and (min-width: 600px) {
     display: flex;
     align-items: baseline;
-    justify-content: end;
+    justify-content: flex-end;
   }
   border-top: thin solid #aaa;
   margin-top: 2rem;

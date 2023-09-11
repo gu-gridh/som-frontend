@@ -1,7 +1,11 @@
 <template>
   <div class="cdh-logo">
-    Centre<br /><span class="cdh-logo-cursive">for </span>Digital
-    <br />Humanities
+    GRIDH<span class="colon">:</span>
+    <div>
+      Gothenburg<br />
+      Research Infrastructure<br />
+      in Digital Humanities
+    </div>
   </div>
 </template>
 
@@ -21,9 +25,13 @@ export default {};
   font-family: "Barlow Condensed", sans-serif;
 }
 
-.cdh-logo .cdh-logo-cursive {
-  font-family: "Clicker Script", cursive;
-  font-size: 30px;
-  vertical-align: 40%;
+.colon {
+  font-size: 84%;
+}
+
+.cdh-logo > div {
+  font-size: 70%;
+  margin-top: 0.05em;
+  line-height: 0.85;
 }
 </style>
