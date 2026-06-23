@@ -5,7 +5,7 @@
       class="icon playback"
       @click="togglePlay"
     />
-    <a :href="this.urlDownload" class="a-inherit" download>
+    <a :href="urlDownload" class="a-inherit" download>
       <font-awesome-icon
         :icon="['fas', 'download']"
         class="icon download"
@@ -42,8 +42,7 @@ export default {
       if (this.sound && !force) return;
 
       // Load 3d-party library dynamically
-      // See: https://webpack.js.org/guides/code-splitting/#dynamic-imports
-      const { Howl } = await import(/* webpackChunkName: "howler" */ "howler");
+      const { Howl } = await import("howler");
       this.sound = new Howl({
         src: [this.url],
         onend: () => {

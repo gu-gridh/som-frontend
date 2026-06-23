@@ -1,13 +1,15 @@
 <template>
   <div id="app">
-    <div class="container">
+    <main class="container">
       <PageHeader />
       <Navigation />
-      <keep-alive>
-        <router-view />
-      </keep-alive>
-      <PageFooter />
-    </div>
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
+    </main>
+    <PageFooter />
   </div>
 </template>
 
@@ -45,5 +47,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style.scss";
+@use "@/assets/style.scss";
 </style>
