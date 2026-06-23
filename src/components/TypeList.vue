@@ -1,53 +1,59 @@
 <template>
   <table :class="{ 'no-tokens': noTokens }">
-    <tr>
-      <th>Type</th>
-      <th>In English</th>
-      <th v-if="!noTokens">Recordings</th>
-    </tr>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>In English</th>
+        <th v-if="!noTokens">Recordings</th>
+      </tr>
+    </thead>
 
-    <tr
-      v-for="{
-        lpnr,
-        gloss_item,
-        en_trans,
-        morphemes,
-        tokens,
-        highlight,
-      } in types"
-      :key="lpnr"
-    >
-      <td>
-        <router-link :to="{ name: 'type', params: { typeId: lpnr } }">
-          <template v-if="highlight && highlight.key === 'gloss_item'">
+    <tbody>
+      <tr
+        v-for="{
+          lpnr,
+          gloss_item,
+          en_trans,
+          morphemes,
+          tokens,
+          highlight,
+        } in types"
+        :key="lpnr"
+      >
+        <td>
+          <router-link :to="{ name: 'type', params: { typeId: lpnr } }">
+            <template v-if="highlight && highlight.key === 'gloss_item'">
+              <span
+                v-html="
+                  utilHighlight(gloss_item, highlight.start, highlight.end)
+                "
+              />
+            </template>
+            <template v-else>{{ gloss_item }}</template>
+          </router-link>
+          <div v-if="morphemes" class="morphemes-row">
+            <Morpheme
+              v-for="(morpheme, i) in morphemes"
+              :key="i"
+              :morpheme="morpheme"
+            />
+          </div>
+        </td>
+
+        <td class="mute">
+          <template v-if="highlight && highlight.key === 'en_trans'">
             <span
-              v-html="utilHighlight(gloss_item, highlight.start, highlight.end)"
+              v-html="utilHighlight(en_trans, highlight.start, highlight.end)"
             />
           </template>
-          <template v-else>{{ gloss_item }}</template>
-        </router-link>
-        <div v-if="morphemes" class="morphemes-row">
-          <Morpheme
-            v-for="(morpheme, i) in morphemes"
-            :key="i"
-            :morpheme="morpheme"
-          />
-        </div>
-      </td>
+          <template v-else>{{ en_trans }}</template>
+        </td>
 
-      <td class="mute">
-        <template v-if="highlight && highlight.key === 'en_trans'">
-          <span
-            v-html="utilHighlight(en_trans, highlight.start, highlight.end)"
-          />
-        </template>
-        <template v-else>{{ en_trans }}</template>
-      </td>
-
-      <td v-if="!noTokens && tokens">
-        <TokenList :tokens="tokens" :limit="2" />
-      </td>
-    </tr>
+        <td v-if="!noTokens && tokens">
+          <TokenList :tokens="tokens" :limit="2" />
+        </td>
+      </tr>
+    </tbody>
   </table>
 </template>
 

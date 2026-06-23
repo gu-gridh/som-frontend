@@ -27,6 +27,11 @@ export default {
   },
   methods: {
     goBack() {
+      if (this.prev.route.path === "/") {
+        this.$router.push("/");
+        return;
+      }
+
       this.$router.back();
     },
   },

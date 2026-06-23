@@ -1,4 +1,3 @@
-import Vue from "vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
@@ -12,11 +11,15 @@ import {
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 
-Vue.component("font-awesome-icon", FontAwesomeIcon);
+export function icons() {
+  library.add(
+    faArrowLeft,
+    faDownload,
+    faPauseCircle,
+    faPlayCircle,
+    faQuestionCircle,
+    faSearch
+  );
+}
 
-library.add(faArrowLeft);
-library.add(faDownload);
-library.add(faPauseCircle);
-library.add(faPlayCircle);
-library.add(faQuestionCircle);
-library.add(faSearch);
+export { FontAwesomeIcon };

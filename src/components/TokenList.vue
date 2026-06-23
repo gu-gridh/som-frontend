@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Token from "@/components/Token";
+import Token from "@/components/Token.vue";
 
 export default {
   name: "TokenList",

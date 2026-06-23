@@ -1,13 +1,9 @@
-import Vue from "vue";
-import Router from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Home from "./views/Home.vue";
 import About from "./views/About.vue";
 
-Vue.use(Router);
-
-export default new Router({
-  mode: "history",
-  base: process.env.BASE_URL,
+export default createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
@@ -23,22 +19,19 @@ export default new Router({
       path: "/type/:typeId",
       name: "type",
       props: true,
-      component: () =>
-        import(/* webpackChunkName: "type" */ "./views/Type.vue"),
+      component: () => import("./views/Type.vue"),
     },
     {
       path: "/morpheme/:morpheme",
       name: "morpheme",
       props: true,
-      component: () =>
-        import(/* webpackChunkName: "morpheme" */ "./views/Morpheme.vue"),
+      component: () => import("./views/Morpheme.vue"),
     },
     {
       path: "/token/:tokenId",
       name: "token",
       props: true,
-      component: () =>
-        import(/* webpackChunkName: "token" */ "./views/Token.vue"),
+      component: () => import("./views/Token.vue"),
     },
   ],
 });
