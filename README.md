@@ -8,10 +8,10 @@ Uses [Howler](https://howlerjs.com/) for sound playback.
 
 ## Development
 
-Requires Node.js 20 or newer.
+Requires Node.js 22 or newer.
 
 ```sh
-nvm use 20
+nvm use 22
 yarn install
 yarn serve
 ```
